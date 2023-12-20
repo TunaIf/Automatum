@@ -15,27 +15,27 @@ namespace Automatum
         static void Main()
         {
 
-            InitializeHexField();
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            InitializeHexField();
             Application.Run(new Form1());
         }
 
         private static void InitializeHexField()
         {
-
-            for (int x = -2; x <= 2; x++)
+            for(int i=0; i <= 4; i++)
             {
-                for (int y = -2; y <= 2; y++)
+                for(int j = 0; j <= 4; j++)
                 {
-                    for (int z = -2; z <= 2; z++)
-                    {
-                        if (x + y + z != 0) continue;
+                    Vec3 cubeCoords = new Vec3(i, j);
+                    if (cubeCoords.z <= -3 || cubeCoords.z >= 3) continue;
 
-                        Hex newHex = new Hex(x, y, z);
-                        HexManager.HexButtonsDictionary.Add(newHex, new CustomElements.HexButton());
-                    }
+                    Hex newHex = new Hex(cubeCoords);
+                    HexManager.HexArray[i, j] = newHex;
+                    HexManager.HexButtonsDictionary.Add(newHex, new CustomElements.HexButton());
                 }
             }
 

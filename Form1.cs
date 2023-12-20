@@ -38,39 +38,24 @@ namespace Automatum
 
             int gapWidth = 5;
 
-            for(int x=-2; x<= 2; x++)
+            foreach(KeyValuePair<Hex, CustomElements.HexButton> kvp in HexManager.HexButtonsDictionary)
             {
-                for (int y = -2; y <= 2; y++)
-                {
-                    for (int z = -2; z <= 2; z++)
-                    {
-                        if (x + y + z != 0) continue;
+                Vec3 cubeCoords = kvp.Key.GetVec3();
+                CustomElements.HexButton hexButton = kvp.Value;
 
-                        CustomElements.HexButton newButton = InsertButton(new Point(
-                            center_x + ((hexSize.Width ) * x - (int)(((double)((hexSize.Width + gapWidth) * y + (hexSize.Width + gapWidth) * z)) * sin30)) /2
-                            , center_y + ((int)(((double)(hexSize.Height + gapWidth) * y - (hexSize.Height + gapWidth) * z) * cos30)) *5/9
-                            ), hexSize);
-
-                        newButton.Text = x + ", " + y + ", " + z;
-                    }
-                }
+                this.Controls.Add(hexButton);
+                hexButton.Location = new Point(
+                            center_x + ((hexSize.Width) * cubeCoords.x - (int)(((double)((hexSize.Width + gapWidth) * cubeCoords.y + (hexSize.Width + gapWidth) * cubeCoords.z)) * sin30)) / 2
+                            , center_y + ((int)(((double)(hexSize.Height + gapWidth) * cubeCoords.y - (hexSize.Height + gapWidth) * cubeCoords.z) * cos30)) * 5 / 9
+                            );
+                hexButton.Size = hexSize;
+                hexButton.Text = cubeCoords.x + ", " + cubeCoords.y + ", " + cubeCoords.z;
             }
 
 
 
-
         }
 
-        private CustomElements.HexButton InsertButton(Point locationPoint, Size size)
-        {
-            CustomElements.HexButton newButton = new CustomElements.HexButton();
-
-            this.Controls.Add(newButton);
-
-            newButton.Location = locationPoint;
-            newButton.Size = size;
-
-            return newButton;
-        }
+        
     }
 }

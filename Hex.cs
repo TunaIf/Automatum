@@ -22,12 +22,16 @@ namespace Automatum
 
         public bool isOccupied;
 
-        
-        public Hex(int x, int y, int z)
+        public Hex(Vec3 vec3)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            x = vec3.x;
+            y = vec3.y;
+            z = vec3.z;
+        }
+
+        public Vec3 GetVec3()
+        {
+            return new Vec3(x, y, z);
         }
     }
 }
