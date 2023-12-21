@@ -38,7 +38,7 @@ namespace Automatum
 
             int gapWidth = 5;
 
-            foreach(KeyValuePair<Hex, CustomElements.HexButton> kvp in HexManager.HexButtonsDictionary)
+            foreach(KeyValuePair<Hex, CustomElements.HexButton> kvp in HexManager.HexButtonDictionary)
             {
                 Vec3 cubeCoords = kvp.Key.GetVec3();
                 CustomElements.HexButton hexButton = kvp.Value;

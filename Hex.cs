@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Automatum
 {
-    internal class Hex
+    public class Hex
     {
         public int x;
         public int y;

@@ -10,12 +10,18 @@ namespace Automatum.CustomElements
 {
     public class HexButton : Button
     {
+        public Hex hex;
         public HexButton()
         {
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
             this.BackColor = Color.MediumSlateBlue;
             this.ForeColor = Color.White;
+
+            //this.Click += new EventHandler(HexButton_Click);
+            this.MouseDown += new MouseEventHandler(OnMouseDown);
+            this.MouseUp += new MouseEventHandler(OnMouseUp);
+
         }
         private GraphicsPath GetFigurePath(Rectangle container)
         {
@@ -50,5 +56,64 @@ namespace Automatum.CustomElements
                 e.Graphics.DrawPath(penSurface, pathSurface);
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        public void SetState(int state)
+        {
+            switch (state)
+            {
+                case 1:
+                    this.BackColor = Color.MediumPurple;
+                    break;
+                case 2:
+                    this.BackColor = Color.MediumSlateBlue;
+                    break;             
+            }
+        }
+
+        private void OnMouseDown(object sender, EventArgs e)
+        {
+            foreach(Hex hexInRaduis in HexManager.GetHexesInRadius(this.hex, 1))
+            {
+                HexButton buttonInRadius;
+                if(HexManager.HexButtonDictionary.TryGetValue(hexInRaduis, out buttonInRadius))
+                {
+                    buttonInRadius.SetState(1);
+                }
+            }
+        }
+        private void OnMouseUp(object sender, EventArgs e)
+        {
+            foreach (Hex hexInRaduis in HexManager.GetHexesInRadius(this.hex, 1))
+            {
+                HexButton buttonInRadius;
+                if (HexManager.HexButtonDictionary.TryGetValue(hexInRaduis, out buttonInRadius))
+                {
+                    buttonInRadius.SetState(2);
+                }
+            }
+        }
+
+        //private void HexButton_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    this.BackColor = Color.LightYellow;
+        //    this.Text = "lel";
+        //}
+
+        //private void HexButton_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    this.BackColor = Color.MediumSlateBlue;
+        //}
+
+        //private void HexButton_Click(object sender, EventArgs e)
+        //{
+        //    this.Text = "t";
+        //}
     }
 }

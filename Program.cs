@@ -15,10 +15,10 @@ namespace Automatum
         static void Main()
         {
 
-            
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+
 
             InitializeHexField();
             Application.Run(new Form1());
@@ -26,7 +26,8 @@ namespace Automatum
 
         private static void InitializeHexField()
         {
-            for(int i=0; i <= 4; i++)
+            int HexArrayIndex = 0;
+            for (int i=0; i <= 4; i++)
             {
                 for(int j = 0; j <= 4; j++)
                 {
@@ -34,8 +35,12 @@ namespace Automatum
                     if (cubeCoords.z <= -3 || cubeCoords.z >= 3) continue;
 
                     Hex newHex = new Hex(cubeCoords);
-                    HexManager.HexArray[i, j] = newHex;
-                    HexManager.HexButtonsDictionary.Add(newHex, new CustomElements.HexButton());
+                    CustomElements.HexButton newButton = new CustomElements.HexButton();
+                    newButton.hex = newHex;
+                    HexManager.HexArray2[i, j] = newHex;
+                    HexManager.HexButtonDictionary.Add(newHex, newButton);
+                    HexManager.HexArray[HexArrayIndex] = newHex;
+                    HexArrayIndex++;
                 }
             }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Automatum
 {
-    internal struct Vec3
+    public struct Vec3
     {
         public int x;
         public int y;
