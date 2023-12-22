@@ -46,8 +46,8 @@ namespace Automatum
 
                 this.Controls.Add(hexButton);
                 hexButton.Location = new Point(
-                            center_x + ((hexSize.Width) * cubeCoords.x - (int)(((double)((hexSize.Width + gapWidth) * cubeCoords.y + (hexSize.Width + gapWidth) * cubeCoords.z)) * sin30)) / 2
-                            , center_y + ((int)(((double)(hexSize.Height + gapWidth) * cubeCoords.y - (hexSize.Height + gapWidth) * cubeCoords.z) * cos30)) * 5 / 9
+                            center_x - hexWidth/2 + ((hexSize.Width) * cubeCoords.x - (int)(((double)((hexSize.Width + gapWidth) * cubeCoords.y + (hexSize.Width + gapWidth) * cubeCoords.z)) * sin30)) / 2
+                            , center_y - hexWidth/2 + ((int)(((double)(hexSize.Height + gapWidth) * cubeCoords.y - (hexSize.Height + gapWidth) * cubeCoords.z) * cos30)) * 5 / 9
                             );
                 hexButton.Size = hexSize;
                 hexButton.Text = cubeCoords.x + ", " + cubeCoords.y + ", " + cubeCoords.z;
@@ -56,10 +56,12 @@ namespace Automatum
 
             //<init char tokens
             CustomElements.CharToken newCharToken = new CustomElements.CharToken();
-            newCharToken.Location = new Point(center_x, center_y);
+            newCharToken.Location = new Point(center_x - CustomElements.CharToken.diametr/2, center_y - CustomElements.CharToken.diametr / 2);
+
 
             this.Controls.Add(newCharToken);
 
+            newCharToken.BringToFront();
 
 
 
@@ -68,6 +70,5 @@ namespace Automatum
 
         }
 
-        
     }
 }

@@ -9,7 +9,9 @@ namespace Automatum.CustomElements
 {
     public class CharToken: PictureBox
     {
+        public static int diametr = 30;
 
+        public CharInstance charInstance;
         public CharToken()
         {
             this.BackColor = Color.Aqua;
@@ -44,7 +46,7 @@ namespace Automatum.CustomElements
             //points[5] = new Point(container.Left, container.Top + half);
             //grPath.AddPolygon(points);
 
-            grPath.AddEllipse(0, 0, 30, 30);
+            grPath.AddEllipse(0, 0, diametr, diametr);
 
 
             return grPath;

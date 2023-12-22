@@ -87,6 +87,8 @@ namespace Automatum.CustomElements
                     buttonInRadius.SetState(1);
                 }
             }
+
+            //Console.WriteLine(hex.x + ", " + hex.y + ", " + hex.z);
         }
         private void OnMouseUp(object sender, EventArgs e)
         {
