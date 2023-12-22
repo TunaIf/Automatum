@@ -32,7 +32,7 @@ namespace Automatum
                 for(int j = 0; j <= 4; j++)
                 {
                     Vec3 cubeCoords = new Vec3(i, j);
-                    if (cubeCoords.z <= -3 || cubeCoords.z >= 3) continue;
+                    if (cubeCoords.z <= -3 || cubeCoords.z >= 3) continue; 
 
                     Hex newHex = new Hex(cubeCoords);
                     CustomElements.HexButton newButton = new CustomElements.HexButton();

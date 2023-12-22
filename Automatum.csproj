@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomElements\CharToken.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomElements\HexButton.cs">
       <SubType>Component</SubType>
     </Compile>

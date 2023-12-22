@@ -79,9 +79,9 @@ namespace Automatum.CustomElements
 
         private void OnMouseDown(object sender, EventArgs e)
         {
-            foreach(Hex hexInRaduis in HexManager.GetHexesInRadius(this.hex, 1))
+            foreach(Hex hexInRaduis in HexManager.GetHexesInLine(this.hex))
             {
-                HexButton buttonInRadius;
+                HexButton buttonInRadius; 
                 if(HexManager.HexButtonDictionary.TryGetValue(hexInRaduis, out buttonInRadius))
                 {
                     buttonInRadius.SetState(1);
@@ -90,30 +90,16 @@ namespace Automatum.CustomElements
         }
         private void OnMouseUp(object sender, EventArgs e)
         {
-            foreach (Hex hexInRaduis in HexManager.GetHexesInRadius(this.hex, 1))
+            foreach (Hex hexInArray in HexManager.HexArray)
             {
-                HexButton buttonInRadius;
-                if (HexManager.HexButtonDictionary.TryGetValue(hexInRaduis, out buttonInRadius))
+                HexButton buttonInArray;
+                if (HexManager.HexButtonDictionary.TryGetValue(hexInArray, out buttonInArray))
                 {
-                    buttonInRadius.SetState(2);
+                    buttonInArray.SetState(2);
                 }
             }
         }
 
-        //private void HexButton_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    this.BackColor = Color.LightYellow;
-        //    this.Text = "lel";
-        //}
 
-        //private void HexButton_MouseUp(object sender, MouseEventArgs e)
-        //{
-        //    this.BackColor = Color.MediumSlateBlue;
-        //}
-
-        //private void HexButton_Click(object sender, EventArgs e)
-        //{
-        //    this.Text = "t";
-        //}
     }
 }

@@ -25,6 +25,7 @@ namespace Automatum
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            //<init hex field
             Size hexSize = new Size(hexWidth, hexHeight);
 
             int center_x = 270;
@@ -51,7 +52,18 @@ namespace Automatum
                 hexButton.Size = hexSize;
                 hexButton.Text = cubeCoords.x + ", " + cubeCoords.y + ", " + cubeCoords.z;
             }
+            //init hex field>
 
+            //<init char tokens
+            CustomElements.CharToken newCharToken = new CustomElements.CharToken();
+            newCharToken.Location = new Point(center_x, center_y);
+
+            this.Controls.Add(newCharToken);
+
+
+
+
+            //init char tokens>
 
 
         }
