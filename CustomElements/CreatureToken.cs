@@ -7,15 +7,28 @@ using System.Linq;
 using System.Text;
 namespace Automatum.CustomElements
 {
-    public class CharToken: PictureBox
+    public class CreatureToken: PictureBox
     {
-        public static int diametr = 30;
+        private static int diametr = RenderManager.tokenDiametr;
+        private static int hexOffsetX = RenderManager.hexWidth / 4;
+        private static int hexOffsetY = RenderManager.hexHeight / 4;
 
-        public CharInstance charInstance;
-        public CharToken()
+        public Creature creatureInstance;
+        public string label;
+
+        public CreatureToken(Creature creature)
         {
-            this.BackColor = Color.Aqua;
+            this.creatureInstance = creature;
+
+            this.BackColor = Color.White;
             this.Enabled = false;
+
+            this.Width = RenderManager.hexWidth;
+            this.Height = RenderManager.hexHeight;
+
+            RenderManager.CreatureTokenDictionary.Add(creature, this);
+
+            GameManager.onCreatureMove += RenderManager.RefreshCreatureTokenLocation;
         }
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
@@ -30,24 +43,15 @@ namespace Automatum.CustomElements
                 this.Region = new Region(pathSurface);
                 e.Graphics.DrawPath(penSurface, pathSurface);
             }
+
+            e.Graphics.DrawString(label, new Font("Arial", 14), Brushes.Green, new Point(diametr/2, diametr/2));
+
         }
         private GraphicsPath GetFigurePath(Rectangle container)
         {
             GraphicsPath grPath = new GraphicsPath();
 
-            //Point[] points = new Point[6];
-            //int half = container.Height / 2;
-            //int quart = container.Width / 4;
-            //points[0] = new Point(container.Left + quart, container.Top);
-            //points[1] = new Point(container.Right - quart, container.Top);
-            //points[2] = new Point(container.Right, container.Top + half);
-            //points[3] = new Point(container.Right - quart, container.Bottom);
-            //points[4] = new Point(container.Left + quart, container.Bottom);
-            //points[5] = new Point(container.Left, container.Top + half);
-            //grPath.AddPolygon(points);
-
-            grPath.AddEllipse(0, 0, diametr, diametr);
-
+            grPath.AddEllipse(hexOffsetX, hexOffsetY, diametr, diametr);
 
             return grPath;
         }

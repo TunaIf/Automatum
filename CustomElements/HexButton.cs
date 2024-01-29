@@ -11,6 +11,10 @@ namespace Automatum.CustomElements
     public class HexButton : Button
     {
         public Hex hex;
+
+        public delegate void MethodContainer(Hex hex);
+        public event MethodContainer onClick_Hex;
+
         public HexButton()
         {
             this.FlatStyle = FlatStyle.Flat;
@@ -18,7 +22,6 @@ namespace Automatum.CustomElements
             this.BackColor = Color.MediumSlateBlue;
             this.ForeColor = Color.White;
 
-            //this.Click += new EventHandler(HexButton_Click);
             this.MouseDown += new MouseEventHandler(OnMouseDown);
             this.MouseUp += new MouseEventHandler(OnMouseUp);
 
@@ -79,27 +82,10 @@ namespace Automatum.CustomElements
 
         private void OnMouseDown(object sender, EventArgs e)
         {
-            foreach(Hex hexInRaduis in HexManager.GetHexesInLine(this.hex))
-            {
-                HexButton buttonInRadius; 
-                if(HexManager.HexButtonDictionary.TryGetValue(hexInRaduis, out buttonInRadius))
-                {
-                    buttonInRadius.SetState(1);
-                }
-            }
-
-            //Console.WriteLine(hex.x + ", " + hex.y + ", " + hex.z);
         }
         private void OnMouseUp(object sender, EventArgs e)
         {
-            foreach (Hex hexInArray in HexManager.HexArray)
-            {
-                HexButton buttonInArray;
-                if (HexManager.HexButtonDictionary.TryGetValue(hexInArray, out buttonInArray))
-                {
-                    buttonInArray.SetState(2);
-                }
-            }
+            if (onClick_Hex != null) onClick_Hex(this.hex);
         }
 
 

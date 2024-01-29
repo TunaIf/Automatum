@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharInstance.cs" />
-    <Compile Include="CustomElements\CharToken.cs">
+    <Compile Include="Creature.cs" />
+    <Compile Include="CustomElements\CreatureToken.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomElements\HexButton.cs">
@@ -59,10 +59,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameManager.cs" />
     <Compile Include="Hex.cs" />
     <Compile Include="HexManager.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderManager.cs" />
     <Compile Include="Vec2.cs" />
     <Compile Include="Vec3.cs" />
     <EmbeddedResource Include="CustomElements\HexButton.resx">
@@ -79,6 +82,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -92,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
